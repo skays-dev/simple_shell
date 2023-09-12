@@ -10,7 +10,7 @@ int main(int ac, char **argv)
 {
     char *line = NULL;
     /*char **command = NULL;*/
-    int status = 0;
+    //int status = 0;
     (void) ac;
     (void) argv;
 
