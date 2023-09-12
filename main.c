@@ -21,6 +21,7 @@ int main(int ac, char **argv)
             return (status);
 
         printf("%s", line);
+        free(line);
         /* command = splicer(line);
 
         status = _execute(command, argv); */
