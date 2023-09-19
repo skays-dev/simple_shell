@@ -8,26 +8,31 @@
 */
 char *my_strdup(const char *source)
 {
-    char *destination;
-    int index, length = 0;
+char *destination;
+int index, length = 0;
 
-    if (source == NULL)
-        return NULL;
+if (source == NULL)
+{
+return NULL;
+}
 
-    while (*source != '\0') {
-        length++;
-        source++;
-    }
+while (*source != '\0')
+{
+length++;
+source++;
+}
 
-    source = source - length;
+source = source - length;
 
-    destination = (char *)malloc(sizeof(char) * (length + 1));
+destination = (char *)malloc(sizeof(char) * (length + 1));
 
-    if (destination == NULL)
-        return NULL;
+if (destination == NULL)
+{
+return NULL;
+}
 
-    for (index = 0; index <= length; index++)
-        destination[index] = source[index];
+for (index = 0; index <= length; index++)
+destination[index] = source[index];
 
-    return (destination);
+return (destination);
 }
