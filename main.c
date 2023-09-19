@@ -28,7 +28,8 @@ return (exitStatus);
 }
 
 parsedCommand = tokenizeInput(inputLine);
-if (!parsedCommand) {
+if (!parsedCommand)
+{
 continue;
 }
 
