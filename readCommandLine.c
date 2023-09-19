@@ -4,7 +4,7 @@
  * readCommandLine - Read a line of input from the user.
  * Returns a dynamically allocated string containing the input.
  * The caller is responsible for freeing the allocated memory.
- */
+*/
 char *readCommandLine(void)
 {
 char *inputLine = NULL;

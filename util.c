@@ -6,16 +6,19 @@
  */
 void freeStringArray(char **stringArray)
 {
-    int index;
+int index;
 
-    if (!stringArray)
-        return;
+if (!stringArray)
+{
+return;
+}
 
-    for (index = 0; stringArray[index]; index++) {
-        free(stringArray[index]);
-        stringArray[index] = NULL;
-    }
+for (index = 0; stringArray[index]; index++)
+{
+free(stringArray[index]);
+stringArray[index] = NULL;
+}
 
-    free(stringArray);
-    stringArray = NULL;
+free(stringArray);
+stringArray = NULL;
 }
