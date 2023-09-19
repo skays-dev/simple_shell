@@ -13,7 +13,7 @@ int index, length = 0;
 
 if (source == NULL)
 {
-return NULL;
+return (NULL);
 }
 
 while (*source != '\0')
@@ -28,7 +28,7 @@ destination = (char *)malloc(sizeof(char) * (length + 1));
 
 if (destination == NULL)
 {
-return NULL;
+return (NULL);
 }
 
 for (index = 0; index <= length; index++)
