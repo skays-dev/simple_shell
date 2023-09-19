@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * @executeCommand: Executes a command in a child process.
  * executeCommand - Executes a command in a child process.
  * @command: An array of strings representing the command and its arguments.
  * @programName: The name of the program (used for error reporting).
+ * 
  * Returns: The exit status of the child process.
  */
 int executeCommand(char **command, char **programName)
