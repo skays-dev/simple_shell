@@ -8,7 +8,8 @@
 */
 char **tokenizeInput(char *input)
 {
-char *token = NULL, *temp = NULL, delimiters[] = " \t\n", **commandArray = NULL;
+char *token = NULL, *temp = NULL, delimiters[] = " \t\n";
+char **commandArray = NULL;
 int tokenCount = 0, index = 0;
 if (!input)
 {
