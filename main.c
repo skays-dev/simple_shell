@@ -1,33 +1,35 @@
-#include "shell.h"
+#include "main.h"
 
-/** 
- * main - Simple shell main function
- * @ac: Count of arguments
- * @av: Arguments
- * Return: 0 Always (success)
-*/
-int main(int ac, char **argv)
+/**
+ * main - Entry point for a simple shell
+ * @argc: The number of command-line arguments
+ * @argv: An array of command-line argument strings
+ * Return: Always returns 0 (success)
+ */
+int main(int argc, char **argv)
 {
-    char *line = NULL, **command = NULL;
-    int status = 0;
-    (void) ac;
+    char *inputLine = NULL;
+    char **parsedCommand = NULL;
+    int exitStatus = 0;
+
+    (void)argc;
+    (void)argv;
 
     while (1)
     {
-        line = read_line();
-        if(line == NULL) 
-        {
-            if (isatty(STDIN_FILENO))
+        inputLine = readCommandLine();
+        if (inputLine == NULL) {
+            if (isatty(STDIN_FILENO)) {
                 write(STDOUT_FILENO, "\n", 1);
-            return (status);
+            }
+            return (exitStatus);
         }
 
-        command = splicer(line);
-        if(command) {
+        parsedCommand = tokenizeInput(inputLine);
+        if (!parsedCommand) {
             continue;
         }
 
-
-        status = _execute(command, argv);
+        exitStatus = executeCommand(parsedCommand, argv);
     }
 }
