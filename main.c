@@ -8,28 +8,30 @@
  */
 int main(int argc, char **argv)
 {
-    char *inputLine = NULL;
-    char **parsedCommand = NULL;
-    int exitStatus = 0;
+char *inputLine = NULL;
+char **parsedCommand = NULL;
+int exitStatus = 0;
 
-    (void)argc;
-    (void)argv;
+(void)argc;
+(void)argv;
 
-    while (1)
-    {
-        inputLine = readCommandLine();
-        if (inputLine == NULL) {
-            if (isatty(STDIN_FILENO)) {
-                write(STDOUT_FILENO, "\n", 1);
-            }
-            return (exitStatus);
-        }
+while (1)
+{
+inputLine = readCommandLine();
+if (inputLine == NULL)
+{
+if (isatty(STDIN_FILENO))
+{
+write(STDOUT_FILENO, "\n", 1);
+}
+return (exitStatus);
+}
 
-        parsedCommand = tokenizeInput(inputLine);
-        if (!parsedCommand) {
-            continue;
-        }
+parsedCommand = tokenizeInput(inputLine);
+if (!parsedCommand) {
+continue;
+}
 
-        exitStatus = executeCommand(parsedCommand, argv);
-    }
+exitStatus = executeCommand(parsedCommand, argv);
+}
 }
