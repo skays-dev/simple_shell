@@ -10,20 +10,15 @@ char *readCommandLine(void)
 char *inputLine = NULL;
 size_t bufferSize = 0;
 ssize_t bytesRead;
-
 if (isatty(STDIN_FILENO))
 {
 write(STDOUT_FILENO, "$ ", 2);
 }
-
 bytesRead = getline(&inputLine, &bufferSize, stdin);
-
 if (bytesRead == -1)
 {
 free(inputLine);
-inputLine = NULL;
 return (NULL);
 }
-
 return (inputLine);
 }

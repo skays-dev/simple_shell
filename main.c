@@ -1,38 +1,40 @@
 #include "main.h"
 
 /**
- * main - Entry point for a simple shell
- * @argc: The number of command-line arguments
- * @argv: An array of command-line argument strings
- * Return: Always returns 0 (success)
+ * main - Simple shell main function
+ * @argc: Count of arguments
+ * @argv: Arguments
+ * Return: 0 Always (success)
  */
-int main(int argc, char **argv)
-{
-char *inputLine = NULL;
-char **parsedCommand = NULL;
-int exitStatus = 0;
+int main(int argc, char **argv) {
+char *line = NULL, **command = NULL;
+int status = 0, index = 0;
 
 (void)argc;
-(void)argv;
 
-while (1)
-{
-inputLine = readCommandLine();
-if (inputLine == NULL)
+while (1) {
+line = readCommandLine();
+if (line == NULL)
 {
 if (isatty(STDIN_FILENO))
 {
 write(STDOUT_FILENO, "\n", 1);
 }
-return (exitStatus);
+return (status);
 }
-
-parsedCommand = tokenizeInput(inputLine);
-if (!parsedCommand)
+index++;
+command = tokenizeInput(line);
+if (!command)
 {
 continue;
 }
-
-exitStatus = executeCommand(parsedCommand, argv);
+if (isBuiltinCommand(command[0]))
+{
+handleBuiltinCommand(command, argv, &status, index);
+}
+else
+{
+status = executeCommand(command, argv, index);
+}
 }
 }

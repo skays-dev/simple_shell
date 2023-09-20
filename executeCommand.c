@@ -1,32 +1,38 @@
 #include "main.h"
 
 /**
- * executeCommand - Executes a command in a child process.
+ * executeCommand - Execute a command and wait for it to complete.
  * @command: An array of strings representing the command and its arguments.
- * @programName: The name of the program (used for error reporting).
- * Returns: The exit status of the child process.
-*/
-int executeCommand(char **command, char **programName)
+ * @argv: An array of strings representing the program's arguments.
+ * @index: The index of the command in the input.
+ * Returns: The exit status of the executed command.
+ */
+int executeCommand(char **command, char **argv, int index)
 {
+char *fullPath;
 pid_t childPid;
-int childStatus;
-
+int exitStatus;
+fullPath = findCommandPath(command[0]);
+if (!fullPath)
+{
+printError(argv[0], command[0], index);
+freeStringArray(command);
+return (127);
+}
 childPid = fork();
-
 if (childPid == 0)
 {
-if (execve(command[0], command, environ) == -1)
+if (execve(fullPath, command, environ) == -1)
 {
-perror(programName[0]);
+free(fullPath), fullPath = NULL;
 freeStringArray(command);
-exit(0);
 }
 }
 else
 {
-waitpid(childPid, &childStatus, 0);
+waitpid(childPid, &exitStatus, 0);
 freeStringArray(command);
+free(fullPath), fullPath = NULL;
 }
-
-return (WEXITSTATUS(childStatus));
+return (WEXITSTATUS(exitStatus));
 }

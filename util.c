@@ -7,18 +7,15 @@
 void freeStringArray(char **stringArray)
 {
 int index;
-
 if (!stringArray)
 {
 return;
 }
-
 for (index = 0; stringArray[index]; index++)
 {
 free(stringArray[index]);
 stringArray[index] = NULL;
 }
-
 free(stringArray);
 stringArray = NULL;
 }
